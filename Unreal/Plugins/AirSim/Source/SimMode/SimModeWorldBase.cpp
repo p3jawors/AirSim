@@ -100,7 +100,7 @@ void ASimModeWorldBase::continueForTime(double seconds)
     UGameplayStatics::SetGamePaused(this->GetWorld(), true);
 }
 
-void ASimModeWorldBase::setWind(const msr::airlib::Vector3r& wind)
+void ASimModeWorldBase::setWind(const msr::airlib::Vector3r& wind) const
 {
     physics_engine_->setWind(wind);
 }

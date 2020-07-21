@@ -31,7 +31,7 @@ public:
     virtual void pause(bool is_paused) override;
     virtual void continueForTime(double seconds) override;
 
-    void setWind(const msr::airlib::Vector3r& wind);
+    virtual void setWind(const msr::airlib::Vector3r& wind) const override;
 
 protected:
     void startAsyncUpdator();
