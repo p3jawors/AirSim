@@ -385,13 +385,13 @@ class VehicleClient:
 
     def simSpawnObject(self, object_name, asset_name, pose, scale, physics_enabled=False):
         """Spawned selected object in the world
-        
+
         Args:
             object_name (str): Desired name of new object
             asset_name (str): Name of asset(mesh) in the project database
             pose (airsim.Pose): Desired pose of object
             scale (airsim.Vector3r): Desired scale of object
-        
+
         Returns:
             str: Name of spawned object, in case it had to be modified
         """
@@ -399,10 +399,10 @@ class VehicleClient:
 
     def simDestroyObject(self, object_name):
         """Removes selected object from the world
-        
+
         Args:
             object_name (str): Name of object to be removed
-        
+
         Returns:
             bool: True if object is queued up for removal
         """
@@ -755,9 +755,19 @@ class VehicleClient:
         Set simulated wind, in World frame, NED direction, m/s
 
         Args:
-            wind (Vector3r): Wind, in World frame, NED direction, in m/s 
+            wind (Vector3r): Wind, in World frame, NED direction, in m/s
         """
         self.client.call('simSetWind', wind)
+
+
+    def simSetExtForce(self, ext_force):
+        """
+        Set additional external forces, in World frame, NED direction
+
+        Args:
+            ext_force (Vector3r): Wind, in World frame, NED direction, in N
+        """
+        self.client.call('simSetExtForce', ext_force)
 
 # -----------------------------------  Multirotor APIs ---------------------------------------------
 class MultirotorClient(VehicleClient, object):

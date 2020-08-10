@@ -45,6 +45,7 @@ public:
         members_.erase(std::remove(members_.begin(), members_.end(), obj), members_.end()); }
 
     virtual void setWind(const Vector3r& wind) {};
+    virtual void setExtForce(const Vector3r& ext_force) {};
 
 private:
     MembersContainer members_;

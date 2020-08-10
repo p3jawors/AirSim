@@ -438,6 +438,12 @@ void RpcLibClientBase::simSetWind(const Vector3r& wind) const
     pimpl_->client.call("simSetWind", conv_wind);
 }
 
+void RpcLibClientBase::simSetExtForce(const Vector3r& ext_force) const
+{
+    RpcLibAdapatorsBase::Vector3r conv_ext_force(ext_force);
+    pimpl_->client.call("simSetExtForce", conv_ext_force);
+}
+
 void* RpcLibClientBase::getClient()
 {
     return &pimpl_->client;

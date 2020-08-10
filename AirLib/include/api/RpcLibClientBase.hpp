@@ -115,6 +115,7 @@ public:
     bool isRecording();
 
     void simSetWind(const Vector3r& wind) const;
+    void simSetExtForce(const Vector3r& ext_force) const;
 
 protected:
     void* getClient();

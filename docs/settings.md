@@ -46,6 +46,7 @@ Below are complete list of settings available along with their default values. I
   "SpeedUnitFactor": 1.0,
   "SpeedUnitLabel": "m/s",
   "Wind": { "X": 0, "Y": 0, "Z": 0 },
+  "ExtForce": { "X": 0, "Y": 0, "Z": 0 },
   "Recording": {
     "RecordOnMove": false,
     "RecordInterval": 0.05,

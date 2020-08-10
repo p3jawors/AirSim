@@ -65,6 +65,8 @@ public:
 
     virtual void setWind(const Vector3r& wind) const override;
 
+    virtual void setExtForce(const Vector3r& ext_force) const override;
+
 private:
     AActor* createNewActor(const FActorSpawnParameters& spawn_params, const FTransform& actor_transform, const Vector3r& scale, UStaticMesh* static_mesh);
     void spawnPlayer();

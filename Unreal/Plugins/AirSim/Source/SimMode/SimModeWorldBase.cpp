@@ -64,6 +64,7 @@ std::unique_ptr<ASimModeWorldBase::PhysicsEngineBase> ASimModeWorldBase::createP
         }
 
         physics_engine->setWind(getSettings().wind);
+        physics_engine->setExtForce(getSettings().ext_force);
     }
     else {
         physics_engine.reset();
@@ -103,6 +104,11 @@ void ASimModeWorldBase::continueForTime(double seconds)
 void ASimModeWorldBase::setWind(const msr::airlib::Vector3r& wind) const
 {
     physics_engine_->setWind(wind);
+}
+
+void ASimModeWorldBase::setExtForce(const msr::airlib::Vector3r& ext_force) const
+{
+    physics_engine_->setExtForce(ext_force);
 }
 
 void ASimModeWorldBase::updateDebugReport(msr::airlib::StateReporterWrapper& debug_reporter)
