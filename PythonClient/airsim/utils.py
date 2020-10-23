@@ -204,4 +204,4 @@ def write_png(filename, image):
     """
     ret = cv2.imwrite(filename, image)
     if not ret:
-        logging.error(f"Writing PNG file {filename} failed")
+        logging.error("Writing PNG file {filename} failed")

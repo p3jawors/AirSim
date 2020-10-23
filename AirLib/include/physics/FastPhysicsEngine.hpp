@@ -18,8 +18,8 @@ namespace msr { namespace airlib {
 
 class FastPhysicsEngine : public PhysicsEngineBase {
 public:
-    FastPhysicsEngine(bool enable_ground_lock = true, Vector3r wind = Vector3r::Zero())
-        : enable_ground_lock_(enable_ground_lock), wind_(wind)
+    FastPhysicsEngine(bool enable_ground_lock = true, Vector3r wind = Vector3r::Zero(), Vector3r ext_force = Vector3r::Zero())
+        : enable_ground_lock_(enable_ground_lock), wind_(wind), ext_force_(ext_force)
     { 
     }
 
@@ -484,6 +484,7 @@ private:
     bool enable_ground_lock_;
     TTimePoint last_message_time;
     Vector3r wind_;
+    Vector3r ext_force_;
 };
 
 }} //namespace
