@@ -23,9 +23,6 @@ public:
     { 
     }
 
-    FastPhysicsEngine(bool enable_ground_lock = true, Vector3r ext_force = Vector3r::Zero())
-        : enable_ground_lock_(enable_ground_lock), ext_force_(ext_force),
-
     //*** Start: UpdatableState implementation ***//
     virtual void resetImplementation() override
     {
