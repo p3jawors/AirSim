@@ -266,26 +266,12 @@ namespace airlib
                 last_message_time = clock()->nowNanos();
             }
         }
-        // static Wrench getExtForceWrench(const PhysicsBody& body, const Quaternionr& orientation, const Vector3r& ext_force_world)
-        // {
-        //     // Add additional external forces
-        //     // Note that force here is in World frame
-        //
-        //     // const Vector3r ext_force = VectorMath::transformToBodyFrame(ext_force_world, orientation);
-        //
-            // Wrench wrench = Wrench::zero();
-            // wrench.force = ext_force_world;
-        //
-        //     return wrench;
-        // }
-
 
         static Wrench getDragWrench(const PhysicsBody& body,
                                     const Quaternionr& orientation,
                                     const Vector3r& linear_vel,
                                     const Vector3r& angular_vel_body,
-                                    const Vector3r& wind_world)//,
-                                    // const Vector3r& ext_force_world)
+                                    const Vector3r& wind_world)
         {
             //add linear drag due to velocity we had since last dt seconds + wind
             //drag vector magnitude is proportional to v^2, direction opposite of velocity
@@ -318,7 +304,6 @@ namespace airlib
 
             //convert force to world frame, leave torque to local frame
             wrench.force = VectorMath::transformToWorldFrame(wrench.force, orientation);
-            // wrench.force += ext_force_world;
 
             return wrench;
         }
@@ -347,7 +332,6 @@ namespace airlib
         }
 
         static void getNextKinematicsNoCollision(TTimeDelta dt, PhysicsBody& body, const Kinematics::State& current,
-                                                 // Kinematics::State& next, Wrench& next_wrench, const Vector3r& wind)
                                                  Kinematics::State& next, Wrench& next_wrench, const Vector3r& wind, const Vector3r& ext_force)
         {
             const real_T dt_real = static_cast<real_T>(dt);
@@ -380,14 +364,11 @@ namespace airlib
                 avg_linear = current.twist.linear + current.accelerations.linear * (0.5f * dt_real);
                 avg_angular = current.twist.angular + current.accelerations.angular * (0.5f * dt_real);
                 const Wrench drag_wrench = getDragWrench(body, current.pose.orientation, avg_linear, avg_angular, wind);//, ext_force);
-                // const Wrench ext_force_wrench = getExtForceWrench(body, current.pose.orientation, ext_force);
-
-                // next_wrench = body_wrench + drag_wrench + ext_force_wrench;
-                // next_wrench = body_wrench + drag_wrench;
 
                 // ext_force is defined in world space
                 Wrench ext_force_wrench = Wrench::zero();
                 ext_force_wrench.force = ext_force;
+
                 next_wrench = body_wrench + drag_wrench + ext_force_wrench;
 
                 //Utils::log(Utils::stringf("B-WRN %s: ", VectorMath::toString(body_wrench.force).c_str()));

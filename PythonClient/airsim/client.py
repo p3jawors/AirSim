@@ -1115,9 +1115,11 @@ class VehicleClient:
 
     def simSetExtForce(self, ext_force):
         """
-        Set additional external forces, in World frame, NED direction
+        Set arbitrary external forces, in World frame, NED direction. Can be used
+        for implementing simple payloads.
+
         Args:
-            ext_force (Vector3r): Wind, in World frame, NED direction, in N
+            ext_force (Vector3r): Force, in World frame, NED direction, in N
         """
         self.client.call('simSetExtForce', ext_force)
 
